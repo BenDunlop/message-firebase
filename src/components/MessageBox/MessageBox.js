@@ -39,16 +39,19 @@ class MessageBox extends Component {
     }
 
     onSubmitHandler(e){
-        e.preventDefault()
-        let dbCon = this.props.db.database().ref('/messages')
 
-        dbCon.push({
-            message: trim(this.state.message)
-        })
+        if(trim(e.taget.value) !== ''){
+            e.preventDefault()
+            let dbCon = this.props.db.database().ref('/messages')
 
-        this.setState({
-            message: ''
-        })
+            dbCon.push({
+                message: trim(this.state.message)
+            })
+
+            this.setState({
+                message: ''
+            })
+        }
     }
 
     render() {
